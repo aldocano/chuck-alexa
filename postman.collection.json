@@ -1,0 +1,3170 @@
+{
+	"info": {
+		"_postman_id": "2f0a0785-ba92-4cde-86c6-5a6e11259912",
+		"name": "io.chucknorris.api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Actuator",
+			"item": [
+				{
+					"name": "Metrics",
+					"item": [
+						{
+							"name": "/actuator/metrics",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/actuator/metrics",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"actuator",
+										"metrics"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/actuator/metrics/jvm.memory.used",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/actuator/metrics/jvm.memory.used",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"actuator",
+										"metrics",
+										"jvm.memory.used"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "17884ac0-bc90-4e73-b05c-aca85fdfbee8",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "9b1eb0fc-0516-4ce0-a607-f89dd07e37fa",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "/actuator",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/actuator",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"actuator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/actuator/health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/actuator/health",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"actuator",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/actuator/info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/actuator/info",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"actuator",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/actuator/prometheus",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/actuator/prometheus",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"actuator",
+								"prometheus"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Documentation",
+			"item": [
+				{
+					"name": "documentation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/documentation",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"documentation"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Feed",
+			"item": [
+				{
+					"name": "/feed/daily-chuck/stats",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7bfd91a6-f4fd-4d1a-9a18-c03f173685c1",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Headers are correct\", function () {",
+									"  pm.response.to.be.header(",
+									"    \"Access-Control-Allow-Origin\",",
+									"    \"*\"",
+									"  );",
+									"  pm.response.to.be.header(",
+									"    \"Access-Control-Allow-Credentials\",",
+									"    \"true\"",
+									"  );",
+									"  pm.response.to.be.header(",
+									"    \"Content-Type\",",
+									"    \"application/json;charset=UTF-8\"",
+									"  );",
+									"});",
+									"",
+									"pm.test('Schema is valid', function() {",
+									"  pm.expect(tv4.validate(",
+									"    pm.response.json(),",
+									"    pm.environment.get(\"schema\").definitions['MailingListStatistic']",
+									"  )).to.be.true;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"description": "The Origin request header indicates where a fetch originates from. It doesn't include any path information, but only the server name. It is sent with CORS requests, as well as with POST requests. It is similar to the Referer header, but, unlike this header, it doesn't disclose the whole path.",
+								"key": "Origin",
+								"type": "text",
+								"value": "*"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/feed/daily-chuck/stats",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"feed",
+								"daily-chuck",
+								"stats"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "The Daily Chuck (json)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7bfd91a6-f4fd-4d1a-9a18-c03f173685c1",
+								"exec": [
+									"var schema = {",
+									"  \"type\": \"object\",",
+									"  \"required\": [",
+									"    \"issue_number\",",
+									"    \"issues\"",
+									"  ],",
+									"  \"properties\": {",
+									"    \"issue_number\": {",
+									"      \"type\": \"integer\"",
+									"    },",
+									"    \"issues\": {",
+									"      \"type\": \"array\",",
+									"      \"items\": {",
+									"        \"type\": \"object\",",
+									"        \"required\": [",
+									"          \"date\",",
+									"          \"joke_id\"",
+									"        ],",
+									"        \"properties\": {",
+									"          \"date\": {",
+									"            \"type\": \"string\"",
+									"          },",
+									"          \"joke_id\": {",
+									"            \"type\": \"string\"",
+									"          }",
+									"        }",
+									"      }",
+									"    }",
+									"  }",
+									"};",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Headers are correct\", function () {",
+									"  pm.response.to.be.header(",
+									"    \"Access-Control-Allow-Origin\",",
+									"    \"*\"",
+									"  );",
+									"  pm.response.to.be.header(",
+									"    \"Access-Control-Allow-Credentials\",",
+									"    \"true\"",
+									"  );",
+									"  pm.response.to.be.header(",
+									"    \"Content-Type\",",
+									"    \"application/json;charset=UTF-8\"",
+									"  );",
+									"});",
+									"",
+									"pm.test('Schema is valid', function() {",
+									"  var jsonData = pm.response.json();",
+									"  pm.expect(tv4.validate(jsonData, schema)).to.be.true;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Origin",
+								"value": "*",
+								"description": "The Origin request header indicates where a fetch originates from. It doesn't include any path information, but only the server name. It is sent with CORS requests, as well as with POST requests. It is similar to the Referer header, but, unlike this header, it doesn't disclose the whole path.",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/feed/daily-chuck",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"feed",
+								"daily-chuck"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "The Daily Chuck (xml)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "07d8186d-d500-47c7-8ce6-4861bc6d79d1",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Headers are correct\", function () {",
+									"  pm.response.to.be.header(",
+									"    \"Access-Control-Allow-Origin\",",
+									"    \"*\"",
+									"  );",
+									"  pm.response.to.be.header(",
+									"    \"Access-Control-Allow-Credentials\",",
+									"    \"true\"",
+									"  );",
+									"  pm.response.to.be.header(",
+									"    \"Content-Type\",",
+									"    \"application/rss+xml;charset=UTF-8\"",
+									"  );",
+									"});",
+									"",
+									"pm.test(\"Has title and description\", function () {",
+									"    var body = xml2Json(responseBody);",
+									"    pm.expect(body.rss.channel.title).to.equal(\"The Daily Chuck\");",
+									"    pm.expect(body.rss.channel.link).to.equal(\"https://api.chucknorris.io/feed/daily-chuck.xml\");",
+									"    pm.expect(body.rss.channel.description).to.equal(\"Get your daily dose of the best #ChuckNorrisFacts every morning straight into your inbox.\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/xml",
+								"type": "text"
+							},
+							{
+								"key": "Origin",
+								"value": "*",
+								"description": "The Origin request header indicates where a fetch originates from. It doesn't include any path information, but only the server name. It is sent with CORS requests, as well as with POST requests. It is similar to the Referer header, but, unlike this header, it doesn't disclose the whole path.",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/feed/daily-chuck",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"feed",
+								"daily-chuck"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Integration",
+			"item": [
+				{
+					"name": "Slack",
+					"item": [
+						{
+							"name": "chuck",
+							"item": [
+								{
+									"name": "random joke",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "670a9e46-d8a4-4c21-8a33-d409a7efb4cb",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"  pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"Headers are correct\", function () {",
+													"  pm.response.to.be.header(",
+													"    \"Content-Type\",",
+													"    \"application/json;charset=UTF-8\"",
+													"  );",
+													"});",
+													"",
+													"pm.test('Schema is valid', function() {",
+													"  const result = tv4.validate(",
+													"    pm.response.json(),",
+													"    pm.environment.get(\"schema\").definitions['SlackCommandResponse']",
+													"  );",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "c4bbd59b-e267-4f62-9549-955701707dbe",
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/x-www-form-urlencoded",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{base_url}}/integration/slack?token=deprecated&team_id=Txxxxxxxx&team_domain={{team_domain}}&channel_id=Dxxxxxxxx&channel_name=directmessage&user_id=Uxxxxxxxx&user_name=jean-claude-van-damme&command=/joke&text=&response_url=https://hooks.slack.com/commands/team_id/xxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxxxxxx&trigger_id=xxxxxxxxxxxx.xxxxxxxxxxx.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"integration",
+												"slack"
+											],
+											"query": [
+												{
+													"key": "token",
+													"value": "deprecated"
+												},
+												{
+													"key": "team_id",
+													"value": "Txxxxxxxx"
+												},
+												{
+													"key": "team_domain",
+													"value": "{{team_domain}}"
+												},
+												{
+													"key": "channel_id",
+													"value": "Dxxxxxxxx"
+												},
+												{
+													"key": "channel_name",
+													"value": "directmessage"
+												},
+												{
+													"key": "user_id",
+													"value": "Uxxxxxxxx"
+												},
+												{
+													"key": "user_name",
+													"value": "jean-claude-van-damme"
+												},
+												{
+													"key": "command",
+													"value": "/joke"
+												},
+												{
+													"key": "text",
+													"value": ""
+												},
+												{
+													"key": "response_url",
+													"value": "https://hooks.slack.com/commands/team_id/xxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxxxxxx"
+												},
+												{
+													"key": "trigger_id",
+													"value": "xxxxxxxxxxxx.xxxxxxxxxxx.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+												},
+												{
+													"key": "",
+													"value": "",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "free text search",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "670a9e46-d8a4-4c21-8a33-d409a7efb4cb",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"  pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"Headers are correct\", function () {",
+													"  pm.response.to.be.header(",
+													"    \"Content-Type\",",
+													"    \"application/json;charset=UTF-8\"",
+													"  );",
+													"});",
+													"",
+													"pm.test('Schema is valid', function() {",
+													"  const result = tv4.validate(",
+													"    pm.response.json(),",
+													"    pm.environment.get(\"schema\").definitions['SlackCommandResponse']",
+													"  );",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/x-www-form-urlencoded"
+											}
+										],
+										"url": {
+											"raw": "{{base_url}}/integration/slack?token=deprecated&team_id=Txxxxxxxx&team_domain={{team_domain}}&channel_id=Dxxxxxxxx&channel_name=directmessage&user_id=Uxxxxxxxx&user_name=jean-claude-van-damme&command=/joke&text=? Chuck&response_url=https://hooks.slack.com/commands/team_id/xxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxxxxxx&trigger_id=xxxxxxxxxxxx.xxxxxxxxxxx.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"integration",
+												"slack"
+											],
+											"query": [
+												{
+													"key": "token",
+													"value": "deprecated"
+												},
+												{
+													"key": "team_id",
+													"value": "Txxxxxxxx"
+												},
+												{
+													"key": "team_domain",
+													"value": "{{team_domain}}"
+												},
+												{
+													"key": "channel_id",
+													"value": "Dxxxxxxxx"
+												},
+												{
+													"key": "channel_name",
+													"value": "directmessage"
+												},
+												{
+													"key": "user_id",
+													"value": "Uxxxxxxxx"
+												},
+												{
+													"key": "user_name",
+													"value": "jean-claude-van-damme"
+												},
+												{
+													"key": "command",
+													"value": "/joke"
+												},
+												{
+													"key": "text",
+													"value": "? Chuck"
+												},
+												{
+													"key": "response_url",
+													"value": "https://hooks.slack.com/commands/team_id/xxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxxxxxx"
+												},
+												{
+													"key": "trigger_id",
+													"value": "xxxxxxxxxxxx.xxxxxxxxxxx.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+												},
+												{
+													"key": "",
+													"value": "",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "random joke from category",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "670a9e46-d8a4-4c21-8a33-d409a7efb4cb",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"  pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"Headers are correct\", function () {",
+													"  pm.response.to.be.header(",
+													"    \"Content-Type\",",
+													"    \"application/json;charset=UTF-8\"",
+													"  );",
+													"});",
+													"",
+													"pm.test('Schema is valid', function() {",
+													"  const result = tv4.validate(",
+													"    pm.response.json(),",
+													"    pm.environment.get(\"schema\").definitions['SlackCommandResponse']",
+													"  );",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/x-www-form-urlencoded"
+											}
+										],
+										"url": {
+											"raw": "{{base_url}}/integration/slack?token=deprecated&team_id=Txxxxxxxx&team_domain={{team_domain}}&channel_id=Dxxxxxxxx&channel_name=directmessage&user_id=Uxxxxxxxx&user_name=jean-claude-van-damme&command=/joke&text=dev&response_url=https://hooks.slack.com/commands/team_id/xxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxxxxxx&trigger_id=xxxxxxxxxxxx.xxxxxxxxxxx.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"integration",
+												"slack"
+											],
+											"query": [
+												{
+													"key": "token",
+													"value": "deprecated"
+												},
+												{
+													"key": "team_id",
+													"value": "Txxxxxxxx"
+												},
+												{
+													"key": "team_domain",
+													"value": "{{team_domain}}"
+												},
+												{
+													"key": "channel_id",
+													"value": "Dxxxxxxxx"
+												},
+												{
+													"key": "channel_name",
+													"value": "directmessage"
+												},
+												{
+													"key": "user_id",
+													"value": "Uxxxxxxxx"
+												},
+												{
+													"key": "user_name",
+													"value": "jean-claude-van-damme"
+												},
+												{
+													"key": "command",
+													"value": "/joke"
+												},
+												{
+													"key": "text",
+													"value": "dev"
+												},
+												{
+													"key": "response_url",
+													"value": "https://hooks.slack.com/commands/team_id/xxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxxxxxx"
+												},
+												{
+													"key": "trigger_id",
+													"value": "xxxxxxxxxxxx.xxxxxxxxxxx.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+												},
+												{
+													"key": "",
+													"value": "",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "random personalized joke",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "670a9e46-d8a4-4c21-8a33-d409a7efb4cb",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"  pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"Headers are correct\", function () {",
+													"  pm.response.to.be.header(",
+													"    \"Content-Type\",",
+													"    \"application/json;charset=UTF-8\"",
+													"  );",
+													"});",
+													"",
+													"pm.test('Schema is valid', function() {",
+													"  const result = tv4.validate(",
+													"    pm.response.json(),",
+													"    pm.environment.get(\"schema\").definitions['SlackCommandResponse']",
+													"  );",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/x-www-form-urlencoded"
+											}
+										],
+										"url": {
+											"raw": "{{base_url}}/integration/slack?token=deprecated&team_id=Txxxxxxxx&team_domain={{team_domain}}&channel_id=Dxxxxxxxx&channel_name=directmessage&user_id=Uxxxxxxxx&user_name=jean-claude-van-damme&command=/joke&text=@ Bob&response_url=https://hooks.slack.com/commands/team_id/xxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxxxxxx&trigger_id=xxxxxxxxxxxx.xxxxxxxxxxx.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"integration",
+												"slack"
+											],
+											"query": [
+												{
+													"key": "token",
+													"value": "deprecated"
+												},
+												{
+													"key": "team_id",
+													"value": "Txxxxxxxx"
+												},
+												{
+													"key": "team_domain",
+													"value": "{{team_domain}}"
+												},
+												{
+													"key": "channel_id",
+													"value": "Dxxxxxxxx"
+												},
+												{
+													"key": "channel_name",
+													"value": "directmessage"
+												},
+												{
+													"key": "user_id",
+													"value": "Uxxxxxxxx"
+												},
+												{
+													"key": "user_name",
+													"value": "jean-claude-van-damme"
+												},
+												{
+													"key": "command",
+													"value": "/joke"
+												},
+												{
+													"key": "text",
+													"value": "@ Bob"
+												},
+												{
+													"key": "response_url",
+													"value": "https://hooks.slack.com/commands/team_id/xxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxxxxxx"
+												},
+												{
+													"key": "trigger_id",
+													"value": "xxxxxxxxxxxx.xxxxxxxxxxx.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+												},
+												{
+													"key": "",
+													"value": "",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "categories",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "670a9e46-d8a4-4c21-8a33-d409a7efb4cb",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"  pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"Headers are correct\", function () {",
+													"  pm.response.to.be.header(",
+													"    \"Content-Type\",",
+													"    \"application/json;charset=UTF-8\"",
+													"  );",
+													"});",
+													"",
+													"pm.test('Schema is valid', function() {",
+													"  const result = tv4.validate(",
+													"    pm.response.json(),",
+													"    pm.environment.get(\"schema\").definitions['SlackCommandResponse']",
+													"  );",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/x-www-form-urlencoded"
+											}
+										],
+										"url": {
+											"raw": "{{base_url}}/integration/slack?token=deprecated&team_id=Txxxxxxxx&team_domain={{team_domain}}&channel_id=Dxxxxxxxx&channel_name=directmessage&user_id=Uxxxxxxxx&user_name=jean-claude-van-damme&command=/joke&text=-cat&response_url=https://hooks.slack.com/commands/team_id/xxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxxxxxx&trigger_id=xxxxxxxxxxxx.xxxxxxxxxxx.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"integration",
+												"slack"
+											],
+											"query": [
+												{
+													"key": "token",
+													"value": "deprecated"
+												},
+												{
+													"key": "team_id",
+													"value": "Txxxxxxxx"
+												},
+												{
+													"key": "team_domain",
+													"value": "{{team_domain}}"
+												},
+												{
+													"key": "channel_id",
+													"value": "Dxxxxxxxx"
+												},
+												{
+													"key": "channel_name",
+													"value": "directmessage"
+												},
+												{
+													"key": "user_id",
+													"value": "Uxxxxxxxx"
+												},
+												{
+													"key": "user_name",
+													"value": "jean-claude-van-damme"
+												},
+												{
+													"key": "command",
+													"value": "/joke"
+												},
+												{
+													"key": "text",
+													"value": "-cat"
+												},
+												{
+													"key": "response_url",
+													"value": "https://hooks.slack.com/commands/team_id/xxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxxxxxx"
+												},
+												{
+													"key": "trigger_id",
+													"value": "xxxxxxxxxxxx.xxxxxxxxxxx.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+												},
+												{
+													"key": "",
+													"value": "",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get joke by id",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "670a9e46-d8a4-4c21-8a33-d409a7efb4cb",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"  pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"Headers are correct\", function () {",
+													"  pm.response.to.be.header(",
+													"    \"Content-Type\",",
+													"    \"application/json;charset=UTF-8\"",
+													"  );",
+													"});",
+													"",
+													"pm.test('Schema is valid', function() {",
+													"  const result = tv4.validate(",
+													"    pm.response.json(),",
+													"    pm.environment.get(\"schema\").definitions['SlackCommandResponse']",
+													"  );",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/x-www-form-urlencoded"
+											}
+										],
+										"url": {
+											"raw": "{{base_url}}/integration/slack?token=deprecated&team_id=Txxxxxxxx&team_domain={{team_domain}}&channel_id=Dxxxxxxxx&channel_name=directmessage&user_id=Uxxxxxxxx&user_name=jean-claude-van-damme&command=/joke&text=: bwoz2uwsqnwmyawyxdvo1w&response_url=https://hooks.slack.com/commands/team_id/xxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxxxxxx&trigger_id=xxxxxxxxxxxx.xxxxxxxxxxx.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"integration",
+												"slack"
+											],
+											"query": [
+												{
+													"key": "token",
+													"value": "deprecated"
+												},
+												{
+													"key": "team_id",
+													"value": "Txxxxxxxx"
+												},
+												{
+													"key": "team_domain",
+													"value": "{{team_domain}}"
+												},
+												{
+													"key": "channel_id",
+													"value": "Dxxxxxxxx"
+												},
+												{
+													"key": "channel_name",
+													"value": "directmessage"
+												},
+												{
+													"key": "user_id",
+													"value": "Uxxxxxxxx"
+												},
+												{
+													"key": "user_name",
+													"value": "jean-claude-van-damme"
+												},
+												{
+													"key": "command",
+													"value": "/joke"
+												},
+												{
+													"key": "text",
+													"value": ": bwoz2uwsqnwmyawyxdvo1w"
+												},
+												{
+													"key": "response_url",
+													"value": "https://hooks.slack.com/commands/team_id/xxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxxxxxx"
+												},
+												{
+													"key": "trigger_id",
+													"value": "xxxxxxxxxxxx.xxxxxxxxxxx.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+												},
+												{
+													"key": "",
+													"value": "",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "help",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "670a9e46-d8a4-4c21-8a33-d409a7efb4cb",
+												"exec": [
+													"pm.test(\"Status code is 200\", function () {",
+													"  pm.response.to.have.status(200);",
+													"});",
+													"",
+													"pm.test(\"Headers are correct\", function () {",
+													"  pm.response.to.be.header(",
+													"    \"Content-Type\",",
+													"    \"application/json;charset=UTF-8\"",
+													"  );",
+													"});",
+													"",
+													"pm.test('Schema is valid', function() {",
+													"  const result = tv4.validate(",
+													"    pm.response.json(),",
+													"    pm.environment.get(\"schema\").definitions['SlackCommandResponse']",
+													"  );",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/x-www-form-urlencoded"
+											}
+										],
+										"url": {
+											"raw": "{{base_url}}/integration/slack?token=deprecated&team_id=Txxxxxxxx&team_domain={{team_domain}}&channel_id=Dxxxxxxxx&channel_name=directmessage&user_id=Uxxxxxxxx&user_name=jean-claude-van-damme&command=/joke&text=help&response_url=https://hooks.slack.com/commands/team_id/xxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxxxxxx&trigger_id=xxxxxxxxxxxx.xxxxxxxxxxx.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"integration",
+												"slack"
+											],
+											"query": [
+												{
+													"key": "token",
+													"value": "deprecated"
+												},
+												{
+													"key": "team_id",
+													"value": "Txxxxxxxx"
+												},
+												{
+													"key": "team_domain",
+													"value": "{{team_domain}}"
+												},
+												{
+													"key": "channel_id",
+													"value": "Dxxxxxxxx"
+												},
+												{
+													"key": "channel_name",
+													"value": "directmessage"
+												},
+												{
+													"key": "user_id",
+													"value": "Uxxxxxxxx"
+												},
+												{
+													"key": "user_name",
+													"value": "jean-claude-van-damme"
+												},
+												{
+													"key": "command",
+													"value": "/joke"
+												},
+												{
+													"key": "text",
+													"value": "help"
+												},
+												{
+													"key": "response_url",
+													"value": "https://hooks.slack.com/commands/team_id/xxxxxxxxxxxx/xxxxxxxxxxxxxxxxxxxxxxxx"
+												},
+												{
+													"key": "trigger_id",
+													"value": "xxxxxxxxxxxx.xxxxxxxxxxx.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+												},
+												{
+													"key": "",
+													"value": "",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"_postman_isSubFolder": true
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		},
+		{
+			"name": "Jokes",
+			"item": [
+				{
+					"name": "Categories",
+					"item": [
+						{
+							"name": "/jokes/categories (json)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b95a04f7-d3d2-4724-8a80-24536ee8041c",
+										"exec": [
+											"var schema = {",
+											"  \"type\": \"array\",",
+											"    \"items\": {",
+											"      \"type\": \"string\"",
+											"    }",
+											"}",
+											"",
+											"pm.test(\"Status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Headers are correct\", function () {",
+											"  pm.response.to.be.header(",
+											"    \"Access-Control-Allow-Origin\",",
+											"    \"*\"",
+											"  );",
+											"  pm.response.to.be.header(",
+											"    \"Access-Control-Allow-Credentials\",",
+											"    \"true\"",
+											"  );",
+											"  pm.response.to.be.header(",
+											"    \"Content-Type\",",
+											"    \"application/json;charset=UTF-8\"",
+											"  );",
+											"});",
+											"",
+											"pm.test('Schema is valid', function() {",
+											"  var jsonData = pm.response.json();",
+											"  pm.expect(tv4.validate(jsonData, schema)).to.be.true;",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Origin",
+										"value": "*",
+										"description": "The Origin request header indicates where a fetch originates from. It doesn't include any path information, but only the server name. It is sent with CORS requests, as well as with POST requests. It is similar to the Referer header, but, unlike this header, it doesn't disclose the whole path.",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/jokes/categories",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"jokes",
+										"categories"
+									]
+								},
+								"description": "Retrieve a list of available joke categories."
+							},
+							"response": [
+								{
+									"name": "/jokes/categories (json)",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Origin",
+												"value": "*",
+												"description": "The Origin request header indicates where a fetch originates from. It doesn't include any path information, but only the server name. It is sent with CORS requests, as well as with POST requests. It is similar to the Referer header, but, unlike this header, it doesn't disclose the whole path.",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{base_url}}/jokes/categories",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"jokes",
+												"categories"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Sat, 08 Jun 2019 09:50:25 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json;charset=UTF-8"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Method"
+										},
+										{
+											"key": "Vary",
+											"value": "Access-Control-Request-Headers"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Access-Control-Allow-Credentials",
+											"value": "true"
+										},
+										{
+											"key": "Via",
+											"value": "1.1 vegur"
+										},
+										{
+											"key": "Expect-CT",
+											"value": "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\""
+										},
+										{
+											"key": "Server",
+											"value": "cloudflare"
+										},
+										{
+											"key": "CF-RAY",
+											"value": "4e39f61e2a44d10d-TXL"
+										},
+										{
+											"key": "Content-Encoding",
+											"value": "gzip"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    \"animal\",\n    \"career\",\n    \"celebrity\",\n    \"dev\",\n    \"explicit\",\n    \"fashion\",\n    \"food\",\n    \"history\",\n    \"money\",\n    \"movie\",\n    \"music\",\n    \"political\",\n    \"religion\",\n    \"science\",\n    \"sport\",\n    \"travel\"\n]"
+								}
+							]
+						},
+						{
+							"name": "/jokes/categories (text)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "1fafa3d8-8662-47ec-b151-31e633608c64",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Headers are correct\", function () {",
+											"  pm.response.to.be.header(",
+											"    \"Access-Control-Allow-Origin\",",
+											"    \"*\"",
+											"  );",
+											"  pm.response.to.be.header(",
+											"    \"Access-Control-Allow-Credentials\",",
+											"    \"true\"",
+											"  );",
+											"  pm.response.to.be.header(",
+											"    \"Content-Type\",",
+											"    \"text/plain;charset=UTF-8\"",
+											"  );",
+											"});",
+											"",
+											"pm.test(\"Has a non-empty body\", function () {",
+											"  pm.expect(pm.response.text().length).to.be.above(0);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "text/plain"
+									},
+									{
+										"key": "Origin",
+										"value": "*",
+										"description": "The Origin request header indicates where a fetch originates from. It doesn't include any path information, but only the server name. It is sent with CORS requests, as well as with POST requests. It is similar to the Referer header, but, unlike this header, it doesn't disclose the whole path.",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/jokes/categories",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"jokes",
+										"categories"
+									]
+								},
+								"description": "Retrieve a list of available joke categories."
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Random",
+					"item": [
+						{
+							"name": "errors",
+							"item": [
+								{
+									"name": "404 - Category not found (json)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "670a9e46-d8a4-4c21-8a33-d409a7efb4cb",
+												"exec": [
+													"var schema = {",
+													"  \"timestamp\": {",
+													"    \"type\": \"string\"",
+													"  },",
+													"  \"status\": {",
+													"    \"type\": \"integer\"",
+													"  },",
+													"  \"error\": {",
+													"    \"type\": \"string\"",
+													"  },",
+													"  \"message\": {",
+													"    \"type\": \"string\"",
+													"  },",
+													"  \"path\": {",
+													"    \"type\": \"string\"",
+													"  }",
+													"}",
+													"",
+													"pm.test(\"Status code is 404\", function () {",
+													"  pm.response.to.have.status(404);",
+													"});",
+													"",
+													"pm.test(\"Headers are correct\", function () {",
+													"  pm.response.to.be.header(",
+													"    \"Access-Control-Allow-Origin\",",
+													"    \"*\"",
+													"  );",
+													"  pm.response.to.be.header(",
+													"    \"Access-Control-Allow-Credentials\",",
+													"    \"true\"",
+													"  );",
+													"  pm.response.to.be.header(",
+													"    \"Content-Type\",",
+													"    \"application/json;charset=UTF-8\"",
+													"  );",
+													"});",
+													"",
+													"pm.test('Schema is valid', function() {",
+													"  var jsonData = pm.response.json();",
+													"  pm.expect(tv4.validate(jsonData, schema)).to.be.true;",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"description": "The Origin request header indicates where a fetch originates from. It doesn't include any path information, but only the server name. It is sent with CORS requests, as well as with POST requests. It is similar to the Referer header, but, unlike this header, it doesn't disclose the whole path.",
+												"key": "Origin",
+												"type": "text",
+												"value": "*"
+											}
+										],
+										"url": {
+											"raw": "{{base_url}}/jokes/random?category=category-does-not-exist",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"jokes",
+												"random"
+											],
+											"query": [
+												{
+													"key": "category",
+													"value": "category-does-not-exist"
+												},
+												{
+													"key": "",
+													"value": "",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "404 - Category not found (text)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "670a9e46-d8a4-4c21-8a33-d409a7efb4cb",
+												"exec": [
+													"var schema = {",
+													"  \"timestamp\": {",
+													"    \"type\": \"string\"",
+													"  },",
+													"  \"status\": {",
+													"    \"type\": \"integer\"",
+													"  },",
+													"  \"error\": {",
+													"    \"type\": \"string\"",
+													"  },",
+													"  \"message\": {",
+													"    \"type\": \"string\"",
+													"  },",
+													"  \"path\": {",
+													"    \"type\": \"string\"",
+													"  }",
+													"}",
+													"",
+													"pm.test(\"Status code is 404\", function () {",
+													"  pm.response.to.have.status(404);",
+													"});",
+													"",
+													"pm.test(\"Headers are correct\", function () {",
+													"  pm.response.to.be.header(",
+													"    \"Access-Control-Allow-Origin\",",
+													"    \"*\"",
+													"  );",
+													"  pm.response.to.be.header(",
+													"    \"Access-Control-Allow-Credentials\",",
+													"    \"true\"",
+													"  );",
+													"  pm.response.to.be.header(",
+													"    \"Content-Type\",",
+													"    \"text/plain;charset=UTF-8\"",
+													"  );",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"type": "text",
+												"value": "text/plain"
+											},
+											{
+												"description": "The Origin request header indicates where a fetch originates from. It doesn't include any path information, but only the server name. It is sent with CORS requests, as well as with POST requests. It is similar to the Referer header, but, unlike this header, it doesn't disclose the whole path.",
+												"key": "Origin",
+												"type": "text",
+												"value": "*"
+											}
+										],
+										"url": {
+											"raw": "{{base_url}}/jokes/random?category=category-does-not-exist",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"jokes",
+												"random"
+											],
+											"query": [
+												{
+													"key": "category",
+													"value": "category-does-not-exist"
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "/jokes/random (json)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "670a9e46-d8a4-4c21-8a33-d409a7efb4cb",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Headers are correct\", function () {",
+											"  pm.response.to.be.header(",
+											"    \"Access-Control-Allow-Origin\",",
+											"    \"*\"",
+											"  );",
+											"  pm.response.to.be.header(",
+											"    \"Access-Control-Allow-Credentials\",",
+											"    \"true\"",
+											"  );",
+											"  pm.response.to.be.header(",
+											"    \"Content-Type\",",
+											"    \"application/json;charset=UTF-8\"",
+											"  );",
+											"});",
+											"",
+											"pm.test('Schema is valid', function() {",
+											"  pm.expect(tv4.validate(",
+											"    pm.response.json(),",
+											"    pm.environment.get(\"schema\").definitions['Joke']",
+											"  )).to.be.true;",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "61dcfdc3-e3ff-47bd-b1bf-8cf0066dd743",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "The Origin request header indicates where a fetch originates from. It doesn't include any path information, but only the server name. It is sent with CORS requests, as well as with POST requests. It is similar to the Referer header, but, unlike this header, it doesn't disclose the whole path.",
+										"key": "Origin",
+										"type": "text",
+										"value": "*"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/jokes/random",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"jokes",
+										"random"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/jokes/random (text)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6628d54d-4327-418d-9601-e9538aa1b9df",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Headers are correct\", function () {",
+											"  pm.response.to.be.header(",
+											"    \"Access-Control-Allow-Origin\",",
+											"    \"*\"",
+											"  );",
+											"  pm.response.to.be.header(",
+											"    \"Access-Control-Allow-Credentials\",",
+											"    \"true\"",
+											"  );",
+											"  pm.response.to.be.header(",
+											"    \"Content-Type\",",
+											"    \"text/plain;charset=UTF-8\"",
+											"  );",
+											"});",
+											"",
+											"pm.test(\"Has a non-empty body\", function () {",
+											"  pm.expect(pm.response.text().length).to.be.above(0);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "text/plain"
+									},
+									{
+										"description": "The Origin request header indicates where a fetch originates from. It doesn't include any path information, but only the server name. It is sent with CORS requests, as well as with POST requests. It is similar to the Referer header, but, unlike this header, it doesn't disclose the whole path.",
+										"key": "Origin",
+										"type": "text",
+										"value": "*"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/jokes/random",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"jokes",
+										"random"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/jokes/random with category (json)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "670a9e46-d8a4-4c21-8a33-d409a7efb4cb",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Headers are correct\", function () {",
+											"  pm.response.to.be.header(",
+											"    \"Access-Control-Allow-Origin\",",
+											"    \"*\"",
+											"  );",
+											"  pm.response.to.be.header(",
+											"    \"Access-Control-Allow-Credentials\",",
+											"    \"true\"",
+											"  );",
+											"  pm.response.to.be.header(",
+											"    \"Content-Type\",",
+											"    \"application/json;charset=UTF-8\"",
+											"  );",
+											"});",
+											"",
+											"pm.test('Schema is valid', function() {",
+											"  pm.expect(tv4.validate(",
+											"    pm.response.json(),",
+											"    pm.environment.get(\"schema\").definitions['Joke']",
+											"  )).to.be.true;",
+											"});",
+											"",
+											"pm.test(\"Has categories = ['dev']\", function () {",
+											"  var jsonData = pm.response.json();",
+											"  pm.expect(jsonData.categories).to.eql(['dev']);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "98dbb6d3-2154-4a5b-a150-9f161c72434c",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "The Origin request header indicates where a fetch originates from. It doesn't include any path information, but only the server name. It is sent with CORS requests, as well as with POST requests. It is similar to the Referer header, but, unlike this header, it doesn't disclose the whole path.",
+										"key": "Origin",
+										"type": "text",
+										"value": "*"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/jokes/random?category=dev",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"jokes",
+										"random"
+									],
+									"query": [
+										{
+											"key": "category",
+											"value": "dev"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/jokes/random with category (text)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "670a9e46-d8a4-4c21-8a33-d409a7efb4cb",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Headers are correct\", function () {",
+											"  pm.response.to.be.header(",
+											"    \"Access-Control-Allow-Origin\",",
+											"    \"*\"",
+											"  );",
+											"  pm.response.to.be.header(",
+											"    \"Access-Control-Allow-Credentials\",",
+											"    \"true\"",
+											"  );",
+											"  pm.response.to.be.header(",
+											"    \"Content-Type\",",
+											"    \"text/plain;charset=UTF-8\"",
+											"  );",
+											"});",
+											"",
+											"pm.test(\"Has a non-empty body\", function () {",
+											"  pm.expect(pm.response.text().length).to.be.above(0);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "text/plain"
+									},
+									{
+										"description": "The Origin request header indicates where a fetch originates from. It doesn't include any path information, but only the server name. It is sent with CORS requests, as well as with POST requests. It is similar to the Referer header, but, unlike this header, it doesn't disclose the whole path.",
+										"key": "Origin",
+										"type": "text",
+										"value": "*"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/jokes/random?category=dev",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"jokes",
+										"random"
+									],
+									"query": [
+										{
+											"key": "category",
+											"value": "dev"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/jokes/random with categories (json)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "670a9e46-d8a4-4c21-8a33-d409a7efb4cb",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Headers are correct\", function () {",
+											"  pm.response.to.be.header(",
+											"    \"Access-Control-Allow-Origin\",",
+											"    \"*\"",
+											"  );",
+											"  pm.response.to.be.header(",
+											"    \"Access-Control-Allow-Credentials\",",
+											"    \"true\"",
+											"  );",
+											"  pm.response.to.be.header(",
+											"    \"Content-Type\",",
+											"    \"application/json;charset=UTF-8\"",
+											"  );",
+											"});",
+											"",
+											"pm.test('Schema is valid', function() {",
+											"  pm.expect(tv4.validate(",
+											"    pm.response.json(),",
+											"    pm.environment.get(\"schema\").definitions['Joke']",
+											"  )).to.be.true;",
+											"});",
+											"",
+											"pm.test(\"Has categories = ['dev'] or ['movie']\", function () {",
+											"  var jsonData = pm.response.json();",
+											"  pm.expect(jsonData.categories).satisfy(category => {",
+											"      return (category[0] === 'dev') || category[0] === 'movie'",
+											"  });",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "98dbb6d3-2154-4a5b-a150-9f161c72434c",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"description": "The Origin request header indicates where a fetch originates from. It doesn't include any path information, but only the server name. It is sent with CORS requests, as well as with POST requests. It is similar to the Referer header, but, unlike this header, it doesn't disclose the whole path.",
+										"key": "Origin",
+										"type": "text",
+										"value": "*"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/jokes/random?category=dev,movie",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"jokes",
+										"random"
+									],
+									"query": [
+										{
+											"key": "category",
+											"value": "dev,movie"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/jokes/random with categories (text)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "670a9e46-d8a4-4c21-8a33-d409a7efb4cb",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Headers are correct\", function () {",
+											"  pm.response.to.be.header(",
+											"    \"Access-Control-Allow-Origin\",",
+											"    \"*\"",
+											"  );",
+											"  pm.response.to.be.header(",
+											"    \"Access-Control-Allow-Credentials\",",
+											"    \"true\"",
+											"  );",
+											"  pm.response.to.be.header(",
+											"    \"Content-Type\",",
+											"    \"text/plain;charset=UTF-8\"",
+											"  );",
+											"});",
+											"",
+											"pm.test(\"Has a non-empty body\", function () {",
+											"  pm.expect(pm.response.text().length).to.be.above(0);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "text/plain"
+									},
+									{
+										"description": "The Origin request header indicates where a fetch originates from. It doesn't include any path information, but only the server name. It is sent with CORS requests, as well as with POST requests. It is similar to the Referer header, but, unlike this header, it doesn't disclose the whole path.",
+										"key": "Origin",
+										"type": "text",
+										"value": "*"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/jokes/random?category=dev,movie",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"jokes",
+										"random"
+									],
+									"query": [
+										{
+											"key": "category",
+											"value": "dev,movie"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/jokes/random  personalised (json)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "670a9e46-d8a4-4c21-8a33-d409a7efb4cb",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Headers are correct\", function () {",
+											"  pm.response.to.be.header(",
+											"    \"Access-Control-Allow-Origin\",",
+											"    \"*\"",
+											"  );",
+											"  pm.response.to.be.header(",
+											"    \"Access-Control-Allow-Credentials\",",
+											"    \"true\"",
+											"  );",
+											"  pm.response.to.be.header(",
+											"    \"Content-Type\",",
+											"    \"application/json;charset=UTF-8\"",
+											"  );",
+											"});",
+											"",
+											"pm.test('Schema is valid', function() {",
+											"  pm.expect(tv4.validate(",
+											"    pm.response.json(),",
+											"    pm.environment.get(\"schema\").definitions['Joke']",
+											"  )).to.be.true;",
+											"});",
+											"",
+											"pm.test('Joke value contains \"Bob\"', function() {",
+											"  pm.expect(pm.response.json().value).to.include(\"Bob\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "41ffca73-01aa-4567-bbff-fd7d641a0da6",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Origin",
+										"value": "*",
+										"description": "The Origin request header indicates where a fetch originates from. It doesn't include any path information, but only the server name. It is sent with CORS requests, as well as with POST requests. It is similar to the Referer header, but, unlike this header, it doesn't disclose the whole path.",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/jokes/random?name=Bob",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"jokes",
+										"random"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Bob"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/jokes/random  personalised (text)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "670a9e46-d8a4-4c21-8a33-d409a7efb4cb",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Headers are correct\", function () {",
+											"  pm.response.to.be.header(",
+											"    \"Access-Control-Allow-Origin\",",
+											"    \"*\"",
+											"  );",
+											"  pm.response.to.be.header(",
+											"    \"Access-Control-Allow-Credentials\",",
+											"    \"true\"",
+											"  );",
+											"  pm.response.to.be.header(",
+											"    \"Content-Type\",",
+											"    \"text/plain;charset=UTF-8\"",
+											"  );",
+											"});",
+											"",
+											"pm.test(\"Has a non-empty body\", function () {",
+											"  pm.expect(pm.response.text().length).to.be.above(0);",
+											"});",
+											"",
+											"pm.test('Body contains \"Bob\"', function() {",
+											"  pm.expect(pm.response.text()).to.include(\"Bob\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "41ffca73-01aa-4567-bbff-fd7d641a0da6",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "text/plain"
+									},
+									{
+										"description": "The Origin request header indicates where a fetch originates from. It doesn't include any path information, but only the server name. It is sent with CORS requests, as well as with POST requests. It is similar to the Referer header, but, unlike this header, it doesn't disclose the whole path.",
+										"key": "Origin",
+										"type": "text",
+										"value": "*"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/jokes/random?name=Bob",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"jokes",
+										"random"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Bob"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/jokes/random  personalised with category (json)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "670a9e46-d8a4-4c21-8a33-d409a7efb4cb",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Headers are correct\", function () {",
+											"  pm.response.to.be.header(",
+											"    \"Access-Control-Allow-Origin\",",
+											"    \"*\"",
+											"  );",
+											"  pm.response.to.be.header(",
+											"    \"Access-Control-Allow-Credentials\",",
+											"    \"true\"",
+											"  );",
+											"  pm.response.to.be.header(",
+											"    \"Content-Type\",",
+											"    \"application/json;charset=UTF-8\"",
+											"  );",
+											"});",
+											"",
+											"pm.test('Schema is valid', function() {",
+											"  pm.expect(tv4.validate(",
+											"    pm.response.json(),",
+											"    pm.environment.get(\"schema\").definitions['Joke']",
+											"  )).to.be.true;",
+											"});",
+											"",
+											"pm.test('Joke value contains \"Bob\"', function() {",
+											"  pm.expect(pm.response.json().value).to.include(\"Bob\");",
+											"});",
+											"",
+											"pm.test(\"Has categories = ['dev']\", function () {",
+											"  var jsonData = pm.response.json();",
+											"  pm.expect(jsonData.categories).satisfy(category => {",
+											"      return (category[0] === 'dev')",
+											"  });",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "41ffca73-01aa-4567-bbff-fd7d641a0da6",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Origin",
+										"value": "*",
+										"description": "The Origin request header indicates where a fetch originates from. It doesn't include any path information, but only the server name. It is sent with CORS requests, as well as with POST requests. It is similar to the Referer header, but, unlike this header, it doesn't disclose the whole path.",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/jokes/random?name=Bob&category=dev",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"jokes",
+										"random"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Bob"
+										},
+										{
+											"key": "category",
+											"value": "dev"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/jokes/random  personalised with category (text)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "670a9e46-d8a4-4c21-8a33-d409a7efb4cb",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Headers are correct\", function () {",
+											"  pm.response.to.be.header(",
+											"    \"Access-Control-Allow-Origin\",",
+											"    \"*\"",
+											"  );",
+											"  pm.response.to.be.header(",
+											"    \"Access-Control-Allow-Credentials\",",
+											"    \"true\"",
+											"  );",
+											"  pm.response.to.be.header(",
+											"    \"Content-Type\",",
+											"    \"text/plain;charset=UTF-8\"",
+											"  );",
+											"});",
+											"",
+											"pm.test(\"Has a non-empty body\", function () {",
+											"  pm.expect(pm.response.text().length).to.be.above(0);",
+											"});",
+											"",
+											"pm.test('Body contains \"Bob\"', function() {",
+											"  pm.expect(pm.response.text()).to.include(\"Bob\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "41ffca73-01aa-4567-bbff-fd7d641a0da6",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "text/plain"
+									},
+									{
+										"description": "The Origin request header indicates where a fetch originates from. It doesn't include any path information, but only the server name. It is sent with CORS requests, as well as with POST requests. It is similar to the Referer header, but, unlike this header, it doesn't disclose the whole path.",
+										"key": "Origin",
+										"type": "text",
+										"value": "*"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/jokes/random?name=Bob&category=dev",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"jokes",
+										"random"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Bob"
+										},
+										{
+											"key": "category",
+											"value": "dev"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Search",
+					"item": [
+						{
+							"name": "errors",
+							"item": [
+								{
+									"name": "400 - Bad Request (json)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "fc247793-9e2b-41a3-8d48-aa4dad010a3f",
+												"exec": [
+													"var schema = {",
+													"  \"type\": \"object\",",
+													"  \"required\": [",
+													"    \"timestamp\",",
+													"    \"status\",",
+													"    \"error\",",
+													"    \"message\",",
+													"    \"violations\"",
+													"  ],",
+													"  \"properties\": {",
+													"    \"timestamp\": {",
+													"      \"type\": \"string\"",
+													"    },",
+													"    \"status\": {",
+													"      \"type\": \"integer\"",
+													"    },",
+													"    \"error\": {",
+													"      \"type\": \"string\"",
+													"    },",
+													"    \"message\": {",
+													"      \"type\": \"string\"",
+													"    },",
+													"    \"violations\": {",
+													"      \"type\": \"object\"",
+													"    }",
+													"  }",
+													"};",
+													"",
+													"pm.test(\"Status code is 400\", function () {",
+													"  pm.response.to.have.status(400);",
+													"});",
+													"",
+													"pm.test(\"Headers are correct\", function () {",
+													"  pm.response.to.be.header(",
+													"    \"Access-Control-Allow-Origin\",",
+													"    \"*\"",
+													"  );",
+													"  pm.response.to.be.header(",
+													"    \"Access-Control-Allow-Credentials\",",
+													"    \"true\"",
+													"  );",
+													"  pm.response.to.be.header(",
+													"    \"Content-Type\",",
+													"    \"application/json;charset=UTF-8\"",
+													"  );",
+													"});",
+													"",
+													"pm.test('Schema is valid', function() {",
+													"  var jsonData = pm.response.json();",
+													"  pm.expect(tv4.validate(jsonData, schema)).to.be.true;",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Origin",
+												"value": "*",
+												"description": "The Origin request header indicates where a fetch originates from. It doesn't include any path information, but only the server name. It is sent with CORS requests, as well as with POST requests. It is similar to the Referer header, but, unlike this header, it doesn't disclose the whole path.",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{base_url}}/jokes/search?query=",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"jokes",
+												"search"
+											],
+											"query": [
+												{
+													"key": "query",
+													"value": ""
+												}
+											]
+										},
+										"description": "Free text search."
+									},
+									"response": []
+								},
+								{
+									"name": "400 -Bad Request (text)",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "670a9e46-d8a4-4c21-8a33-d409a7efb4cb",
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {",
+													"  pm.response.to.have.status(400);",
+													"});",
+													"",
+													"pm.test(\"Headers are correct\", function () {",
+													"  pm.response.to.be.header(",
+													"    \"Access-Control-Allow-Origin\",",
+													"    \"*\"",
+													"  );",
+													"  pm.response.to.be.header(",
+													"    \"Access-Control-Allow-Credentials\",",
+													"    \"true\"",
+													"  );",
+													"  pm.response.to.be.header(",
+													"    \"Content-Type\",",
+													"    \"text/plain;charset=UTF-8\"",
+													"  );",
+													"});",
+													"",
+													"pm.test(\"Has a non-empty body\", function () {",
+													"  pm.expect(pm.response.text().length).to.be.above(0);",
+													"});",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "text/plain",
+												"type": "text"
+											},
+											{
+												"key": "Origin",
+												"value": "*",
+												"description": "The Origin request header indicates where a fetch originates from. It doesn't include any path information, but only the server name. It is sent with CORS requests, as well as with POST requests. It is similar to the Referer header, but, unlike this header, it doesn't disclose the whole path.",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{base_url}}/jokes/search?query=",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"jokes",
+												"search"
+											],
+											"query": [
+												{
+													"key": "query",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "/jokes/search (json)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "fc247793-9e2b-41a3-8d48-aa4dad010a3f",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Headers are correct\", function () {",
+											"  pm.response.to.be.header(",
+											"    \"Access-Control-Allow-Origin\",",
+											"    \"*\"",
+											"  );",
+											"  pm.response.to.be.header(",
+											"    \"Access-Control-Allow-Credentials\",",
+											"    \"true\"",
+											"  );",
+											"  pm.response.to.be.header(",
+											"    \"Content-Type\",",
+											"    \"application/json;charset=UTF-8\"",
+											"  );",
+											"});",
+											"",
+											"pm.test('Schema is valid', function() {",
+											"  pm.expect(tv4.validate(",
+											"    pm.response.json(),",
+											"    pm.environment.get(\"schema\").definitions['JokeSearchResult']",
+											"  )).to.be.true;",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "a20686e1-d58a-4e65-874a-5447a7799048",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Origin",
+										"value": "*",
+										"description": "The Origin request header indicates where a fetch originates from. It doesn't include any path information, but only the server name. It is sent with CORS requests, as well as with POST requests. It is similar to the Referer header, but, unlike this header, it doesn't disclose the whole path.",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/jokes/search?query=roundhouse",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"jokes",
+										"search"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "roundhouse"
+										}
+									]
+								},
+								"description": "Free text search."
+							},
+							"response": []
+						},
+						{
+							"name": "/jokes/search (text)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "675e0429-432d-4b51-b425-97f5c7385153",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Headers are correct\", function () {",
+											"  pm.response.to.be.header(",
+											"    \"Access-Control-Allow-Origin\",",
+											"    \"*\"",
+											"  );",
+											"  pm.response.to.be.header(",
+											"    \"Access-Control-Allow-Credentials\",",
+											"    \"true\"",
+											"  );",
+											"  pm.response.to.be.header(",
+											"    \"Content-Type\",",
+											"    \"text/plain;charset=UTF-8\"",
+											"  );",
+											"});",
+											"",
+											"pm.test(\"Has a non-empty body\", function () {",
+											"  pm.expect(pm.response.text().length).to.be.above(0);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "text/plain"
+									},
+									{
+										"key": "Origin",
+										"value": "*",
+										"description": "The Origin request header indicates where a fetch originates from. It doesn't include any path information, but only the server name. It is sent with CORS requests, as well as with POST requests. It is similar to the Referer header, but, unlike this header, it doesn't disclose the whole path.",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/jokes/search?query=roundhouse",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"jokes",
+										"search"
+									],
+									"query": [
+										{
+											"key": "query",
+											"value": "roundhouse"
+										}
+									]
+								},
+								"description": "Free text search."
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "errors",
+					"item": [
+						{
+							"name": "404 - Joke not found (json)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "670a9e46-d8a4-4c21-8a33-d409a7efb4cb",
+										"exec": [
+											"var schema = {",
+											"  \"timestamp\": {",
+											"    \"type\": \"string\"",
+											"  },",
+											"  \"status\": {",
+											"    \"type\": \"integer\"",
+											"  },",
+											"  \"error\": {",
+											"    \"type\": \"string\"",
+											"  },",
+											"  \"message\": {",
+											"    \"type\": \"string\"",
+											"  },",
+											"  \"path\": {",
+											"    \"type\": \"string\"",
+											"  }",
+											"}",
+											"",
+											"pm.test(\"Status code is 404\", function () {",
+											"  pm.response.to.have.status(404);",
+											"});",
+											"",
+											"pm.test(\"Headers are correct\", function () {",
+											"  pm.response.to.be.header(",
+											"    \"Access-Control-Allow-Origin\",",
+											"    \"*\"",
+											"  );",
+											"  pm.response.to.be.header(",
+											"    \"Access-Control-Allow-Credentials\",",
+											"    \"true\"",
+											"  );",
+											"  pm.response.to.be.header(",
+											"    \"Content-Type\",",
+											"    \"application/json;charset=UTF-8\"",
+											"  );",
+											"});",
+											"",
+											"pm.test('Schema is valid', function() {",
+											"  var jsonData = pm.response.json();",
+											"  pm.expect(tv4.validate(jsonData, schema)).to.be.true;",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Origin",
+										"value": "*",
+										"description": "The Origin request header indicates where a fetch originates from. It doesn't include any path information, but only the server name. It is sent with CORS requests, as well as with POST requests. It is similar to the Referer header, but, unlike this header, it doesn't disclose the whole path.",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/jokes/bwoz2uwsqnwmyawyxdvo1z",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"jokes",
+										"bwoz2uwsqnwmyawyxdvo1z"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "404 - Joke not found (text)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "670a9e46-d8a4-4c21-8a33-d409a7efb4cb",
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {",
+											"  pm.response.to.have.status(404);",
+											"});",
+											"",
+											"pm.test(\"Headers are correct\", function () {",
+											"  pm.response.to.be.header(",
+											"    \"Access-Control-Allow-Origin\",",
+											"    \"*\"",
+											"  );",
+											"  pm.response.to.be.header(",
+											"    \"Access-Control-Allow-Credentials\",",
+											"    \"true\"",
+											"  );",
+											"  pm.response.to.be.header(",
+											"    \"Content-Type\",",
+											"    \"text/plain;charset=UTF-8\"",
+											"  );",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "text/plain",
+										"type": "text"
+									},
+									{
+										"key": "Origin",
+										"value": "*",
+										"description": "The Origin request header indicates where a fetch originates from. It doesn't include any path information, but only the server name. It is sent with CORS requests, as well as with POST requests. It is similar to the Referer header, but, unlike this header, it doesn't disclose the whole path.",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/jokes/bwoz2uwsqnwmyawyxdvo1z",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"jokes",
+										"bwoz2uwsqnwmyawyxdvo1z"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "/jokes/{id} (html)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "670a9e46-d8a4-4c21-8a33-d409a7efb4cb",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Headers are correct\", function () {",
+									"  pm.response.to.be.header(",
+									"    \"Access-Control-Allow-Origin\",",
+									"    \"*\"",
+									"  );",
+									"  pm.response.to.be.header(",
+									"    \"Access-Control-Allow-Credentials\",",
+									"    \"true\"",
+									"  );",
+									"  pm.response.to.be.header(",
+									"    \"Content-Type\",",
+									"    \"text/html;charset=UTF-8\"",
+									"  );",
+									"});",
+									"",
+									"var $ = cheerio.load(pm.response.text())",
+									"",
+									"pm.test(\"Matches title\", () => { ",
+									"  pm.expect($('title').text()).to.not.be.empty;",
+									"  pm.expect($('title').text()).to.equal('Chuck Norris finished World of Warcraft.');",
+									"});",
+									"",
+									"pm.test('Includes a joke', () => {",
+									"  pm.expect($('#joke_value').text()).to.equal('Chuck Norris finished World of Warcraft.');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/html"
+							},
+							{
+								"description": "The Origin request header indicates where a fetch originates from. It doesn't include any path information, but only the server name. It is sent with CORS requests, as well as with POST requests. It is similar to the Referer header, but, unlike this header, it doesn't disclose the whole path.",
+								"key": "Origin",
+								"type": "text",
+								"value": "*"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/jokes/bwoz2uwsqnwmyawyxdvo1w",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"jokes",
+								"bwoz2uwsqnwmyawyxdvo1w"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/jokes/{id} (json)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "670a9e46-d8a4-4c21-8a33-d409a7efb4cb",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Headers are correct\", function () {",
+									"  pm.response.to.be.header(",
+									"    \"Access-Control-Allow-Origin\",",
+									"    \"*\"",
+									"  );",
+									"  pm.response.to.be.header(",
+									"    \"Access-Control-Allow-Credentials\",",
+									"    \"true\"",
+									"  );",
+									"  pm.response.to.be.header(",
+									"    \"Content-Type\",",
+									"    \"application/json;charset=UTF-8\"",
+									"  );",
+									"});",
+									"",
+									"pm.test('Schema is valid', function() {",
+									"  pm.expect(tv4.validate(",
+									"    pm.response.json(),",
+									"    pm.environment.get(\"schema\").definitions['Joke']",
+									"  )).to.be.true;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "41ffca73-01aa-4567-bbff-fd7d641a0da6",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Origin",
+								"value": "*",
+								"description": "The Origin request header indicates where a fetch originates from. It doesn't include any path information, but only the server name. It is sent with CORS requests, as well as with POST requests. It is similar to the Referer header, but, unlike this header, it doesn't disclose the whole path.",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/jokes/bwoz2uwsqnwmyawyxdvo1w",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"jokes",
+								"bwoz2uwsqnwmyawyxdvo1w"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/jokes/{id} (text)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6628d54d-4327-418d-9601-e9538aa1b9df",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"  pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Headers are correct\", function () {",
+									"  pm.response.to.be.header(",
+									"    \"Access-Control-Allow-Origin\",",
+									"    \"*\"",
+									"  );",
+									"  pm.response.to.be.header(",
+									"    \"Access-Control-Allow-Credentials\",",
+									"    \"true\"",
+									"  );",
+									"  pm.response.to.be.header(",
+									"    \"Content-Type\",",
+									"    \"text/plain;charset=UTF-8\"",
+									"  );",
+									"});",
+									"",
+									"pm.test(\"Body matches string\", function () {",
+									"  pm.expect(pm.response.text()).to.include(\"Chuck Norris finished World of Warcraft.\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/plain",
+								"type": "text"
+							},
+							{
+								"key": "Origin",
+								"value": "*",
+								"description": "The Origin request header indicates where a fetch originates from. It doesn't include any path information, but only the server name. It is sent with CORS requests, as well as with POST requests. It is similar to the Referer header, but, unlike this header, it doesn't disclose the whole path.",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/jokes/bwoz2uwsqnwmyawyxdvo1w",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"jokes",
+								"bwoz2uwsqnwmyawyxdvo1w"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "3ea14d7d-d97c-4ea1-a5cb-d5fdc6aac1db",
+				"type": "text/javascript",
+				"exec": [
+					"const setSchema = (baseUrl) => {",
+					"  if (!baseUrl) {",
+					"    throw new Error('Argument \"baseUrl\" must be a non-empty string.');",
+					"  }",
+					"  ",
+					"  const env = pm.environment.name;",
+					"  const schema = pm.environment.get(\"schema\");",
+					"  if (!schema) {",
+					"    const url = `${baseUrl}/documentation`;",
+					"    pm.sendRequest(url, function (err, response) {",
+					"      if (err) {",
+					"        throw new Error(`Could not fetch swagger documentation from \"${url}\"`);",
+					"      } else {",
+					"        console.info(`Set environment variable \"schema\" successfully.`);",
+					"        pm.environment.set(\"schema\", response.json());",
+					"      }",
+					"    });",
+					"  }",
+					"}",
+					"",
+					"setSchema(",
+					"  pm.environment.get('base_url')",
+					");"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "023ae7ea-5b4e-4752-9fbe-fa9a16988776",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

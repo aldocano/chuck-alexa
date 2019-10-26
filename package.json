@@ -1,0 +1,23 @@
+{
+    "name": "chuck-norris",
+    "version": "1.1.0",
+    "description": "alexa utility for quickly building skills",
+    "main": "index.js",
+    "author": "Aldo Cano",
+    "license": "ISC",
+    "dependencies": {
+        "ask-sdk-core": "^2.6.0",
+        "ask-sdk-model": "^1.18.0",
+        "aws-sdk": "^2.326.0",
+        "alexa-sdk": "^1.0.25",
+        "i18next": "^15.0.5"
+    },
+    "devDependencies": {
+        "eslint": "^6.6.0",
+        "eslint-config-standard": "^14.1.0",
+        "eslint-plugin-import": "^2.18.2",
+        "eslint-plugin-node": "^10.0.0",
+        "eslint-plugin-promise": "^4.2.1",
+        "eslint-plugin-standard": "^4.0.1"
+    }
+}
